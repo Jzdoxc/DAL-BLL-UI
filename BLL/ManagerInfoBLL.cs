@@ -13,7 +13,19 @@ namespace BLL
         ManageInfoDAL miDal = new ManageInfoDAL();
         public List<ManagerInfo> GetList()
         {
-            return miDal.GetList();
+            return miDal.GetList(null);
+        }
+        public bool Login(ManagerInfo mi)
+        {
+            var list = miDal.GetList(mi);
+            if (list.Count>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public bool Add(ManagerInfo mi)
         {

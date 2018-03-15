@@ -11,13 +11,18 @@ namespace DAL
     {
         private static string connStr = System.Configuration.ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
 
-        public static DataTable GetList (string sql)
+        public static DataTable GetList (string sql, params MySqlParameter[] ps)
         {
             //构造连接对象
             using (MySqlConnection conn =new MySqlConnection(connStr))
             {
                 //构造桥接器对象
                 MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
+                //增加参数
+                if (ps[0]!=null || ps[1]!=null)
+                {
+                    adapter.SelectCommand.Parameters.AddRange(ps);
+                }
                 //数据表对象
                 DataTable dt = new DataTable();
                 //填充数据表
@@ -26,6 +31,7 @@ namespace DAL
                 return dt;
             }
         }
+
 
         public static int ExecuteNonQuery(string sql,params MySqlParameter[] ps)
         {
