@@ -90,6 +90,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="test\ManagerInfoList.resx">
       <DependentUpon>ManagerInfoList.cs</DependentUpon>
@@ -134,6 +135,14 @@
     <Content Include="docs\MySqlParameter.xml" />
     <Content Include="docs\MySqlParameterCollection.xml" />
     <Content Include="docs\MySqlTransaction.xml" />
+    <None Include="Resources\31.jpg" />
+    <None Include="Resources\21.jpg" />
+    <None Include="Resources\7.jpg" />
+    <None Include="Resources\13.jpg" />
+    <None Include="Resources\1.jpg" />
+    <None Include="Resources\2017-10-21 145825.jpg" />
+    <None Include="Resources\2017-09-22 180438.jpg" />
+    <None Include="Resources\2008-9-4 200210.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,7 +29,10 @@ namespace UI
             ManagerInfoBLL Bll = new ManagerInfoBLL();
             if (Bll.Login(mi))
             {
-                new MainForm().Show();
+                MainForm form =new MainForm();
+                form.Tag = mi.MType;
+                form.Show();
+
                 this.Visible = false;
             }
             else

@@ -20,6 +20,7 @@ namespace BLL
             var list = miDal.GetList(mi);
             if (list.Count>0)
             {
+                mi.MType = list[0].MType;
                 return true;
             }
             else

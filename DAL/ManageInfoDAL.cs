@@ -15,16 +15,16 @@ namespace DAL
         public List<ManagerInfo> GetList(ManagerInfo mi)
         {
             string sql= "select * from managerinfo";
-            MySqlParameter[] ps = new MySqlParameter[2] ;
+            List<MySqlParameter> ps = new List<MySqlParameter>();
             //拼接查询条件
             if (mi!=null)
             {
                 sql += "  where mname=@name and mpwd=@pwd";
-                ps[0] = new MySqlParameter("@name", mi.MName);
-                ps[1]=new MySqlParameter("@pwd",MD5Helper.GetMd5( mi.MPwd));
+                ps.Add(new MySqlParameter("@name", mi.MName));
+                ps.Add(new MySqlParameter("@pwd",MD5Helper.GetMd5( mi.MPwd)));
             }
             //执行查询，获取数据
-            DataTable dt = MySqlHelper.GetList(sql,ps);
+            DataTable dt = MySqlHelper.GetList(sql,ps.ToArray());
             //构造集合对象
             List<ManagerInfo> list = new List<ManagerInfo>();
             //遍历数据表中的行，将数据转存到LIST

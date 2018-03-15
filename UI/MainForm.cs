@@ -21,5 +21,15 @@ namespace UI
         {
             Application.Exit();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void menuManager_Click(object sender, EventArgs e)
+        {
+            test.ManagerInfoList  list = new test.ManagerInfoList();
+            list.Show();
+        }
     }
 }
