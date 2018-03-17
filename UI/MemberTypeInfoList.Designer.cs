@@ -37,12 +37,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_Delete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_Delete = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -136,6 +136,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
             // 
+            // btn_Delete
+            // 
+            this.btn_Delete.Location = new System.Drawing.Point(28, 282);
+            this.btn_Delete.Name = "btn_Delete";
+            this.btn_Delete.Size = new System.Drawing.Size(155, 23);
+            this.btn_Delete.TabIndex = 5;
+            this.btn_Delete.Text = "删除";
+            this.btn_Delete.UseVisualStyleBackColor = true;
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dataGridView1);
@@ -186,15 +196,6 @@
             this.Column3.HeaderText = "折扣";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            // 
-            // btn_Delete
-            // 
-            this.btn_Delete.Location = new System.Drawing.Point(28, 282);
-            this.btn_Delete.Name = "btn_Delete";
-            this.btn_Delete.Size = new System.Drawing.Size(155, 23);
-            this.btn_Delete.TabIndex = 5;
-            this.btn_Delete.Text = "删除";
-            this.btn_Delete.UseVisualStyleBackColor = true;
             // 
             // MemberTypeInfoList
             // 

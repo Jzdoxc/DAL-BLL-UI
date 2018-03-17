@@ -26,5 +26,12 @@ namespace BLL
         {
             return mtiDal.Update(mti) > 0;
         }
+
+        public bool Remove(int id)
+        {
+            return mtiDal.Delete(id) > 0;
+        }
+
+     
     }
 }

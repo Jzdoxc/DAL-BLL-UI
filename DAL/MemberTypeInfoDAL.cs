@@ -13,9 +13,7 @@ namespace DAL
         {
             string sql = "select * from membertypeinfo  where misdelete = 0";
             List<MemberTypeInfo> list = new List<MemberTypeInfo>();
-            
-            MySqlDataAdapter adapter =
-                new MySqlDataAdapter(sql, ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(sql, ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
             foreach (DataRow row in dt.Rows)
@@ -26,6 +24,7 @@ namespace DAL
                 info.MDiscount = Convert.ToDecimal(row[2]);
                 list.Add(info);
             }
+
             return list;
         }
 
@@ -36,7 +35,7 @@ namespace DAL
             MySqlParameter[] ps =
             {
                 new MySqlParameter("@title", mti.MTitle),
-                new MySqlParameter("@discount",mti.MDiscount)
+                new MySqlParameter("@discount", mti.MDiscount)
             };
             return MySqlHelper.ExecuteNonQuery(sql, ps);
         }
@@ -44,15 +43,24 @@ namespace DAL
         public int Update(MemberTypeInfo mti)
         {
             string sql = "update membertypeinfo set mtitle=@title,mdiscount=@discount where mid=@id";
-            MySqlParameter[] ps = new MySqlParameter[]
+            MySqlParameter[] ps =
             {
-                new MySqlParameter("@title",mti.MTitle),
-                new MySqlParameter("@discount",mti.MDiscount),
-                new MySqlParameter("@id",mti.MId)
+                new MySqlParameter("@title", mti.MTitle),
+                new MySqlParameter("@discount", mti.MDiscount),
+                new MySqlParameter("@id", mti.MId)
             };
 
             return MySqlHelper.ExecuteNonQuery(sql, ps);
-
         }
+
+        public int Delete(int id)
+        {
+            //逻辑删除，将misdelete删除标记改为1
+            string sql = "update membertypeinfo set misdelete=1 where mid=@id";
+            MySqlParameter ps = new MySqlParameter("@id",id);
+            return MySqlHelper.ExecuteNonQuery(sql, ps);
+        }
+
+    
     }
 }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
 using MODEL;
@@ -33,7 +26,6 @@ namespace UI
 
         private void btn_Insert_Click(object sender, EventArgs e)
         {
-           
             var mtiBll = new MemberTypeInfoBLL();
 
 
@@ -55,7 +47,8 @@ namespace UI
                 {
                     MessageBox.Show("添加失败");
                 }
-            }else if (btn_Save.Text.Equals("修改"))
+            }
+            else if (btn_Save.Text.Equals("修改"))
             {
                 MemberTypeInfo mti = new MemberTypeInfo
                 {
@@ -66,15 +59,13 @@ namespace UI
                 if (mtiBll.Edit(mti))
                 {
                     LoadList();
-                    btn_Cancel_Click(null,null);
+                    btn_Cancel_Click(null, null);
                     MessageBox.Show("修改成功");
-                    
                 }
                 else
                 {
                     MessageBox.Show("修改失败");
                 }
-
             }
         }
 
@@ -93,6 +84,35 @@ namespace UI
             textBox2.Text = "";
             textBox3.Text = "";
             btn_Save.Text = "添加";
+        }
+
+        private void btn_Delete_Click(object sender, EventArgs e)
+        {
+            MemberTypeInfoBLL mtiBll = new MemberTypeInfoBLL();
+            
+            //获取选择的行，找到对应的编号
+            var row = dataGridView1.SelectedRows;
+            if (row.Count>0)
+            {
+                DialogResult result = MessageBox.Show("确定要删除吗", "提示", MessageBoxButtons.OKCancel);
+                if (result==DialogResult.OK)
+                {
+                    int id = int.Parse(row[0].Cells[0].Value.ToString());
+                    if (mtiBll.Remove(id))
+                    {
+                        btn_Cancel_Click(null, null);
+                        LoadList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("删除失败，请稍后再试");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("请选择要删除的数据");
+            }
         }
     }
 }

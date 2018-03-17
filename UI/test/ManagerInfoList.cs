@@ -140,10 +140,5 @@ namespace UI.test
             btn_Insert.Text = "修改";
         }
 
-        private void a()
-        {
-            var rows = dataGridView1.SelectedRows;
-            MessageBox.Show(rows[0].Cells[0].Value.ToString());
-        }
     }
 }
