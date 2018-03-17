@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ManageInfoDAL.cs" />
+    <Compile Include="MemberInfoDAL.cs" />
     <Compile Include="MemberTypeInfoDAL.cs" />
     <Compile Include="MySqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

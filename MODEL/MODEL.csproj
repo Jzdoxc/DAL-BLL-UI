@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ManagerInfo.cs" />
+    <Compile Include="MemberInfo.cs" />
     <Compile Include="MemberTypeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
