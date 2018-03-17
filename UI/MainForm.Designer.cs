@@ -70,6 +70,7 @@
             this.menuMember.Name = "menuMember";
             this.menuMember.Size = new System.Drawing.Size(112, 104);
             this.menuMember.Text = "member";
+            this.menuMember.Click += new System.EventHandler(this.menuMember_Click);
             // 
             // menuDish
             // 

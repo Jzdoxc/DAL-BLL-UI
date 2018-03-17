@@ -13,9 +13,7 @@ namespace DAL
         {
             string sql = "select * from membertypeinfo  where misdelete = 0";
             List<MemberTypeInfo> list = new List<MemberTypeInfo>();
-            MySqlDataAdapter adapter = new MySqlDataAdapter(sql, ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
+            DataTable dt = MySqlHelper.GetList(sql);
             foreach (DataRow row in dt.Rows)
             {
                 MemberTypeInfo info = new MemberTypeInfo();

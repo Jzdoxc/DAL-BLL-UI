@@ -134,6 +134,7 @@
             this.button2.TabIndex = 0;
             this.button2.Text = "类型管理";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btn_Save
             // 
@@ -329,6 +330,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "MemberInfoList";
             this.Text = "MemberInfoList";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MemberInfoList_FormClosing);
             this.Load += new System.EventHandler(this.MemberInfoList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);

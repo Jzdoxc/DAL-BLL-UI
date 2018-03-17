@@ -14,9 +14,21 @@ namespace UI
 {
     public partial class MemberInfoList : Form
     {
-        public MemberInfoList()
+        //将构造方法私有
+        private MemberInfoList()
         {
             InitializeComponent();
+        }
+        //通过指定的方法创建窗体对象
+        private static MemberInfoList mil;
+        public static MemberInfoList Create()
+        {
+            //判断是否不存在
+            if(mil==null)
+            {
+                mil = new MemberInfoList();
+            }
+            return mil;
         }
         private MemberInfoBLL miBll = new MemberInfoBLL();
         private void MemberInfoList_Load(object sender, EventArgs e)
@@ -145,6 +157,18 @@ namespace UI
         private void txt_SearchPhone_Leave(object sender, EventArgs e)
         {
             LoadList();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MemberTypeInfoList mtilist = new MemberTypeInfoList();
+            mtilist.Show();
+
+        }
+
+        private void MemberInfoList_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mil = null;
         }
     }
 }
