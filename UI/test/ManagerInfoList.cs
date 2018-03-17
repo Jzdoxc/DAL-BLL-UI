@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using System.Configuration;
-using MODEL;
 using BLL;
+using MODEL;
 
 namespace UI.test
 {
     public partial class ManagerInfoList : Form
     {
+        private readonly ManagerInfoBLL miBll = new ManagerInfoBLL();
+
         public ManagerInfoList()
         {
             InitializeComponent();
         }
-        ManagerInfoBLL miBll = new ManagerInfoBLL();
+
         private void ManagerInfoList_Load(object sender, EventArgs e)
         {
             #region 旧版
+
             /* 
              //1.创建连接对象
              using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["connection"].ConnectionString))
@@ -52,20 +46,21 @@ namespace UI.test
                  dataGridView1.DataSource = list;
 
                */
+
             #endregion
 
             Loadlist();
         }
+
         private void Loadlist()
         {
-
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = miBll.GetList();
         }
+
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.ColumnIndex == 2)
-            {
                 switch (e.Value.ToString())
                 {
                     case "1":
@@ -77,12 +72,11 @@ namespace UI.test
                     default:
                         break;
                 }
-            }
         }
 
         private void btn_Insert_Click(object sender, EventArgs e)
         {
-            ManagerInfo mi = new ManagerInfo()
+            var mi = new ManagerInfo
             {
                 MName = textBox2.Text,
                 MPwd = textBox3.Text,
@@ -92,13 +86,9 @@ namespace UI.test
             if (btn_Insert.Text.Equals("添加"))
             {
                 if (miBll.Add(mi))
-                {
                     Loadlist();
-                }
                 else
-                {
                     MessageBox.Show("添加失败");
-                }
             }
             else if (btn_Insert.Text.Equals("修改"))
             {
@@ -113,7 +103,6 @@ namespace UI.test
                     MessageBox.Show("更新失败");
                 }
             }
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -122,20 +111,15 @@ namespace UI.test
             var rows = dataGridView1.SelectedRows;
             if (rows.Count > 0)
             {
-                DialogResult result = MessageBox.Show("确定要删除吗", "提示", MessageBoxButtons.OKCancel);
+                var result = MessageBox.Show("确定要删除吗", "提示", MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
                 {
-                    int id = Convert.ToInt32(rows[0].Cells[0].Value);
+                    var id = Convert.ToInt32(rows[0].Cells[0].Value);
                     if (miBll.Remove(id))
-                    {
                         Loadlist();
-                    }
                     else
-                    {
                         MessageBox.Show("删除失败，请稍后重试");
-                    }
                 }
-
             }
             else
             {
@@ -150,17 +134,16 @@ namespace UI.test
             textBox3.Text = "******";
             textBox2.Text = row.Cells[1].Value.ToString();
             if (row.Cells[2].Value.ToString() == "1")
-            {
                 rb1.Checked = true;
-
-            }
             else
-            {
                 rb2.Checked = true;
-            }
             btn_Insert.Text = "修改";
         }
 
+        private void a()
+        {
+            var rows = dataGridView1.SelectedRows;
+            MessageBox.Show(rows[0].Cells[0].Value.ToString());
+        }
     }
 }
-

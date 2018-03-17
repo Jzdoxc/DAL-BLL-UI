@@ -9,12 +9,22 @@ namespace BLL
 {
     public class MemberTypeInfoBLL
     {
-        private MemberTypeInfoDAL miDal = new MemberTypeInfoDAL();
+        private MemberTypeInfoDAL mtiDal = new MemberTypeInfoDAL();
         public List<MemberTypeInfo> GetList()
         {
             List<MemberTypeInfo> list = new List<MemberTypeInfo>();
-            list = miDal.GetList();
+            list = mtiDal.GetList();
             return list;
+        }
+
+        public bool Add(MemberTypeInfo mti)
+        {
+            return mtiDal.Insert(mti)>0;
+        }
+
+        public bool Edit(MemberTypeInfo mti)
+        {
+            return mtiDal.Update(mti) > 0;
         }
     }
 }

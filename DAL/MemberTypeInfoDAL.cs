@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MODEL;
-using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
+using MODEL;
+using MySql.Data.MySqlClient;
 
 namespace DAL
 {
@@ -14,25 +11,48 @@ namespace DAL
     {
         public List<MemberTypeInfo> GetList()
         {
-            string sql = "select * from membertypeinfo  where misdelete = 0"; 
+            string sql = "select * from membertypeinfo  where misdelete = 0";
             List<MemberTypeInfo> list = new List<MemberTypeInfo>();
-            MemberTypeInfo info = new MemberTypeInfo();
-            MySqlDataAdapter adapter = new MySqlDataAdapter(sql,ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
+            
+            MySqlDataAdapter adapter =
+                new MySqlDataAdapter(sql, ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
             foreach (DataRow row in dt.Rows)
             {
+                MemberTypeInfo info = new MemberTypeInfo();
                 info.MId = Convert.ToInt32(row[0]);
                 info.MTitle = row[1].ToString();
                 info.MDiscount = Convert.ToDecimal(row[2]);
-                info.MIsDelete = Convert.ToBoolean(row[3]);
                 list.Add(info);
             }
-                return list;
+            return list;
+        }
 
+        public int Insert(MemberTypeInfo mti)
+        {
+            //构造插入语句，注意：必须列与值相对应
+            string sql = "insert into membertypeinfo(mtitle,mdiscount,misdelete) values(@title,@discount,0)";
+            MySqlParameter[] ps =
+            {
+                new MySqlParameter("@title", mti.MTitle),
+                new MySqlParameter("@discount",mti.MDiscount)
+            };
+            return MySqlHelper.ExecuteNonQuery(sql, ps);
+        }
 
+        public int Update(MemberTypeInfo mti)
+        {
+            string sql = "update membertypeinfo set mtitle=@title,mdiscount=@discount where mid=@id";
+            MySqlParameter[] ps = new MySqlParameter[]
+            {
+                new MySqlParameter("@title",mti.MTitle),
+                new MySqlParameter("@discount",mti.MDiscount),
+                new MySqlParameter("@id",mti.MId)
+            };
+
+            return MySqlHelper.ExecuteNonQuery(sql, ps);
 
         }
-          
     }
-    }
+}

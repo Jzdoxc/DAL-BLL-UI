@@ -16,7 +16,7 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MemberTypeInfoList());
+            Application.Run(new UI.MemberTypeInfoList());
         }
     }
 }
