@@ -41,6 +41,7 @@ namespace UI
                 {
                     LoadList();
                     btn_Cancel_Click(null, null);
+                    UpdateTypeEvent();
                     MessageBox.Show("添加成功");
                 }
                 else
@@ -102,6 +103,7 @@ namespace UI
                     {
                         btn_Cancel_Click(null, null);
                         LoadList();
+                        UpdateTypeEvent();
                     }
                     else
                     {
@@ -114,5 +116,7 @@ namespace UI
                 MessageBox.Show("请选择要删除的数据");
             }
         }
+
+        public event Action UpdateTypeEvent;
     }
 }

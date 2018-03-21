@@ -33,6 +33,7 @@ namespace UI
         private MemberInfoBLL miBll = new MemberInfoBLL();
         private void MemberInfoList_Load(object sender, EventArgs e)
         {
+            
             LoadList();
             LoadComboxItems();
         }
@@ -147,6 +148,9 @@ namespace UI
         {
             txt_SearchName.Text = "";
             txt_SearchPhone.Text = "";
+            LoadList();
+
+
         }
 
         private void txt_SearchName_Leave(object sender, EventArgs e)
@@ -162,6 +166,7 @@ namespace UI
         private void button2_Click(object sender, EventArgs e)
         {
             MemberTypeInfoList mtilist = new MemberTypeInfoList();
+            mtilist.UpdateTypeEvent += UpdateType;
             mtilist.Show();
 
         }
@@ -170,5 +175,13 @@ namespace UI
         {
             mil = null;
         }
+        
+        private void UpdateType()
+        {
+            LoadComboxItems();
+            LoadList();
+
+        }
+
     }
 }
